@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BE_Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="d-flex justify-content-around">
+        <form action="/register/user" method="post" class="col-2 p-4 mt-5 bg-dark text-light rounded">
+            <div class="col text-center">
+                <h2 class="text-white">Register</h2>
+            </div>
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="form-group col">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" class="form-control rounded-pill" placeholder="First Name">
+            </div>
+            <div class="form-group col">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" class="form-control rounded-pill" placeholder="Last Name">
+            </div>
+            <div class="form-group col">
+                <label for="email">Email:</label>
+                <input type="text" name="email" class="form-control rounded-pill" placeholder="Email">
+            </div>
+            <div class="form-group col">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control rounded-pill" placeholder="Password">
+            </div>
+            <div class="form-group col">
+                <label for="confirm">Confirm Password:</label>
+                <input type="password" name="confirm" class="form-control rounded-pill" placeholder="Confirm Password">
+            </div>
+            <div class="col text-center">
+                <input type="submit" value="Register" class="btn btn-outline-primary rounded-pill col-6">
+            </div>
+        </form>
+        <form action="/login" method="post" class="col-2 p-4 mt-5 bg-dark text-light rounded">
+            <div class="col text-center">
+                <h2 class="text-white">Login</h2>
+            </div>
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" name="email" class="form-control rounded-pill" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control rounded-pill" placeholder="Password">
+            </div>
+            <div class="col text-center">
+                <input type="submit" value="Login" class="btn btn-outline-success rounded-pill col-6">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

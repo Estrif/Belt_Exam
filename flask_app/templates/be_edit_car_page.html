@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BE_Edit_Show_page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Editing {{one_car.make}} {{one_car.model}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="//show/{{user.user_id}}/cars" class="btn btn-info">Purchases</a>
+            <a href="/login_page" class="btn btn-info">Logout</a>
+
+        </div>
+
+    </nav>
+    <form action="/update/{{one_car.car_id}}" method="post" class="col-11 p-4 my-4 bg-dark text-light mx-auto">
+        {% with messages = get_flashed_messages(category_filter=['show']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="d-flex justify-content-between col-9">
+            <input type="hidden" name="car_id" value={{one_car.car_id}}>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="make">Make:</label>
+                    <input type="text" name="make" class="form-control" value="{{one_car.make}}">
+                </div>
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                   <input type="text" name="model" class="form-control" value="{{one_car.model}}">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" name="year" min="1900" class="form-control" value="{{one_car.year}}">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" name="price" min="0" class="form-control" value="{{one_car.price}}">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5" class="form-control" value="{{one_car.description}}"></textarea>
+                </div>
+                <input type="submit" value="Update Car" class="btn btn-outline-primary">
+                <a href="/dashboard" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

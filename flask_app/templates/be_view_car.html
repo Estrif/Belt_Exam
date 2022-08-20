@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BE_View_Show</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <div class="d-flex justify-content-around mt-5">
+            <h1 class="text-center ml-5">Viewing {{one_car.make}} {{one_car.model}}</h1>
+            <div>
+                <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+                <a href="/show/{{user.user_id}}/cars" class="btn btn-info">Purchases</a>
+                <a href="/login_page" class="btn btn-info">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="card col-3 mx-auto my-5 bg-dark text-light rounded">
+        <div class="card-body">
+            <h2 class="card-title text-warning">{{one_car.make}} {{one_car.model}}</h2>
+            <p class="card-text">Price: {{one_car.price}}</p>
+            <p class="card-text">Year:  {{one_car.year}}</p>
+            <p class="card-text">Description: {{one_car.description}}</p>
+            <a href="/purchase/{{one_car.car_id}}" class="btn btn-outline-primary">Purchase</a>
+        </div>
+    </div>
+</body>
+</html>

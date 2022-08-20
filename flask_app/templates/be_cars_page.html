@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BE_Car_Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-around align-items-center col-12">
+        <h1 class="text-center">Welcome to Car 'R' Us, {{user.first_name}}</h1>
+        <div>
+            <a href="/new" class="btn btn-primary">Add New Car</a>
+            <a href="/show/{{user.user_id}}/cars" class="btn btn-info">Purchases</a>
+            <a href="/login_page" class="btn btn-info">Logout</a>
+        </div>
+    </nav>
+    <dv class="text-center">
+        <h2>Cars for Sale</h2>
+    </dv>
+    <div class="col-9 mx-auto">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in all_cars %}
+                    <tr>
+                        <td>{{car.make}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.year}}</td>
+                        <td>
+                            {% if (car.seller_id == user.user_id) and (car.was_sold != 1) %}
+                                <div class="actions d-inline-flex">
+                                    <a href="/edit/{{car.car_id}}">Edit </a>
+                                    <p> | </p>
+                                    <a href="/delete/{{car.car_id}}"> Delete</a>
+                                </div>
+                            {% elif (car.seller_id != user.user_id) and (car.was_sold != 1) %}
+                                <div class="actions">
+                                        <a href="/show/{{car.car_id}}">View</a>
+                                </div>
+                            {% elif car.was_sold == 1 %}
+                                <p class="text-secondary">SOLD</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

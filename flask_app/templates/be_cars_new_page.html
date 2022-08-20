@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BE_Car_New_Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-around align-items-center col-12">
+        <h1 class="text-center">Place a car for sale</h1>
+        <div>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="//show/{{user.user_id}}/cars" class="btn btn-info">Purchases</a>
+            <a href="/login_page" class="btn btn-info">Logout</a>
+        </div>
+
+    </nav>
+    <form action="/create" method="post" class="col-7 p-4 my-5 bg-dark text-light mx-auto rounded">
+        <h2 class="text-warning ml-5">Add a New Car</h2>
+        {% with messages = get_flashed_messages(category_filter=['car']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="d-flex justify-content-center col-25">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="make">Make:</label>
+                    <input type="text" name="make" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <input type="text" name="model" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="year">Release Date:</label>
+                    <input type="number" min="1900" max="2024" name="year" class="form-control" placeholder="EX: 1990">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" min="0" name="price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <input type="submit" value="Add Car" class="btn btn-outline-primary">
+                <a href="/dashboard" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
